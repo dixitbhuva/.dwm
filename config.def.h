@@ -28,7 +28,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"/usr/bin/feh --bg-scale --randomize /home/dixit/.wallpapers/*", NULL,
+	"sh", "-c", "/usr/bin/feh --bg-scale --randomize /home/dixit/.wallpapers/*", NULL,
 	"/usr/bin/picom", "--experimental-backends", NULL,
 	"/usr/local/bin/st", NULL,
 	NULL /* terminate */
@@ -78,14 +78,14 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", NULL };
 static const char *termcmd[]  = { "/usr/local/bin/st", NULL };
 /* PIPEWIRE @DEFAULT_AUDIO_SINK@ */
-static const char *upvol[]      = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%+", "-l", "1", NULL };
-static const char *downvol[]    = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%-", "-l", "1", NULL };
-static const char *mutevol[]    = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
-static const char *wallpapercmd[] = { "/usr/bin/feh", "--bg-scale", "--randomize", "/home/dixit/.wallpapers/*", NULL };
+static const char *upvol[]     = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%+", "-l", "1", NULL };
+static const char *downvol[]   = { "/usr/bin/wpctl",   "set-volume", "@DEFAULT_AUDIO_SINK@",      "5%-", "-l", "1", NULL };
+static const char *mutevol[]   = { "/usr/bin/wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
+static const char *randomwallpaper[] = { "/bin/sh", "-c", "/usr/bin/feh --bg-scale --randomize /home/dixit/.wallpapers/*", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        		function        argument */
-	{ 0,                      	XF86XK_Calculator,	spawn, 		{.v = wallpapercmd } },
+	{ 0,                      	XF86XK_Calculator,	spawn, 		{.v = randomwallpaper } },
 	{ 0,                      	XF86XK_AudioRaiseVolume,spawn, 		{.v = upvol   } },
 	{ 0,                       	XF86XK_AudioLowerVolume,spawn, 		{.v = downvol } },
 	{ 0,                       	XF86XK_AudioMute, 	spawn, 		{.v = mutevol } },
