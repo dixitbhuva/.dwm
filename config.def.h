@@ -4,7 +4,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const int startwithgaps[]    = { 1, 0, 0, 0, 0, 0, 0, 0, 0 };	/* 1 means gaps are used by default, this can be customized for each tag */
-static const unsigned int gappx[]   = { 30, 10, 10, 10, 10, 10, 10, 10, 10 };   /* default gap between windows in pixels, this can be customized for each tag */
+static const unsigned int gappx[]   = { 40, 10, 10, 10, 10, 10, 10, 10, 10 };   /* default gap between windows in pixels, this can be customized for each tag */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -14,8 +14,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:pixelsize=10:antialias=true:autohint=true", "monospace:size=10" };
-static const char dmenufont[]       = "Terminus:pixelsize=10:antialias=true:autohint=true";
+static const char *fonts[]          = { "Terminus:pixelsize=14:antialias=true:autohint=true", "monospace:size=10" };
+static const char dmenufont[]       = "Terminus:pixelsize=14:antialias=true:autohint=true";
 static const char col_gray1[]       = "#051121";
 static const char col_gray2[]       = "#333333";
 static const char col_gray3[]       = "#ffffff";
@@ -29,6 +29,7 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"sh", "-c", "/usr/bin/feh --bg-scale --randomize /home/dixit/.wallpapers/*", NULL,
+	"sh", "-c", "while :; do /home/dixit/.dwm/dwmstatus.sh -; sleep 60; done", NULL,
 	"/usr/bin/picom", "--experimental-backends", NULL,
 	"/usr/local/bin/st", NULL,
 	NULL /* terminate */
